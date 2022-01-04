@@ -4,6 +4,6 @@ import com.example.entity.Order;
 
 public interface OrderService {
 
-    Order queryOrderById(Long orderId);
+    Order queryById(Long orderId);
 
 }

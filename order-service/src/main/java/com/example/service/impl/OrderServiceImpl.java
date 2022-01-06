@@ -22,7 +22,8 @@ public class OrderServiceImpl implements OrderService {
         // 1. 查询订单
         Order order = orderMapper.findById(orderId);
         // 2. 调用 user-service 服务查询用户信息
-        String url = "http://localhost:8081/user/" + order.getUserId();
+//        String url = "http://localhost:8081/user/" + order.getUserId();
+        String url = "http://user-service/user/" + order.getUserId();
         UserDTO userDTO = restTemplate.getForObject(url, UserDTO.class);
         // 3. 将 user 设置到 order 中
         order.setUserDTO(userDTO);

@@ -19,6 +19,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User queryById(@PathVariable("id") Long id) {
+        log.info("用户 id 为：" + id);
         return userService.queryById(id);
     }
 

@@ -30,3 +30,18 @@ eureka:
     register-with-eureka: true
     # 是否需要进行服务拉取
     fetch-registry: true
+
+# 给指定名称的微服务配置负载均衡策略。即：Ribbon 调用该微服务进行负载时，会使用如下指定的策略
+user-service:
+  ribbon:
+    # 指定 Ribbon 负载均衡策略
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# Ribbon 默认是采用懒加载，即第一次访问时才会去创建 LoadBalanceClient，请求时间会很长。
+ribbon:
+  # 开启饥饿加载：饥饿加载则会在项目启动时创建，降低第一次访问的耗时，通过下面配置开启饥饿加载
+  eager-load:
+    enabled: true
+    clients:
+      # 多个的话，使用 - 接着往下加即可
+      - user-service
